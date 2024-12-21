@@ -1,20 +1,11 @@
 from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 import os
-from dotenv import load_dotenv
-
-# Load environment variables
-load_dotenv()
 
 app = Flask(__name__)
 
-# Database configuration with fallback
-database_url = os.getenv('DATABASE_URL')
-if database_url is None:
-    database_url = 'postgresql://postgres:postgres@db:5432/cct'
-    print(f"Warning: DATABASE_URL not set, using default: {database_url}")
-
-app.config['SQLALCHEMY_DATABASE_URI'] = database_url
+# Database configuration - usando conexão direta com o serviço do Easypanel
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:postgres@cct-db:5432/cct'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
