@@ -9,13 +9,15 @@ RUN apk add --no-cache \
     python3-dev \
     musl-dev
 
-# Install Python dependencies
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+# Install Python packages
+RUN pip install flask \
+    flask-sqlalchemy \
+    psycopg2-binary \
+    gunicorn
 
 # Copy application code
 COPY . .
 
-EXPOSE 5000
+EXPOSE 3000
 
-CMD ["python", "app.py"]
+CMD ["gunicorn", "--bind", "0.0.0.0:3000", "app:app"]
