@@ -4,7 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 
 # Configuração do banco de dados com as mesmas credenciais do CCT EAD
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://vicelmo:qaz123wsx@cct-db:5432/cct'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://vicelmo:qaz123wsx@cct-db:5432/novocct'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
